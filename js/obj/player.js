@@ -75,6 +75,7 @@ export default class Player{
         }
     }
     desenhar(){
+        this.ctx.fillStyle = "black"
         this.ctx.fillRect(this.x,this.y,50,50)
     }
 }

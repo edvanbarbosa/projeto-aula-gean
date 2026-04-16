@@ -10,11 +10,11 @@ export default class Player{
             return {
                 "w": {
                     "direction":"y",
-                    "value": 50
+                    "value": -50
                 },
                 "s": {
                     "direction":"y",
-                    "value": -50
+                    "value": 50
                 },
                 "d": {
                     "direction":"x",
@@ -30,11 +30,11 @@ export default class Player{
             return {
                 "ArrowUp": {
                     "direction":"y",
-                    "value": 50
+                    "value": -50
                 },
                 "ArrowDown": {
                     "direction":"y",
-                    "value": -50
+                    "value": 50
                 },
                 "ArrowRight": {
                     "direction":"x",
@@ -50,9 +50,29 @@ export default class Player{
     mover(tecla){
        const tecladoDefinido = this.definirTeclado(this.teclado)
        const teclaDefinida = tecladoDefinido[tecla]
-
-       this.teclaDefinida.direction = this.teclaDefinida.value
+        const directionFunction = teclaDefinida.direction
+        const valorDaTecla = teclaDefinida.value
        
+        if(directionFunction == 'x'){
+            this.x += valorDaTecla
+        }
+        else if(directionFunction == 'y'){
+            this.y += valorDaTecla
+        }
+    }
+    controlarPosicao(minX,maxX,minY,maxY){
+        if(this.x<minX){
+            this.x = maxX
+        }
+        else if(this.x >maxX){
+            this.x = minX
+        }
+        if(this.y<minY){
+            this.y = maxY
+        }
+        else if(this.y >maxY){
+            this.y = minY
+        }
     }
     desenhar(){
         this.ctx.fillRect(this.x,this.y,50,50)
